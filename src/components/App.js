@@ -6,7 +6,7 @@ const App = () => {
     return (
         <div className="ui container grid app">
             <div className="ui row">
-                <div className="six wide column">
+                <div className="seven wide column">
                     <h1>Welcome to the area</h1>
                     <p>Here are some places you should check out</p>
                     <RestaurantList />

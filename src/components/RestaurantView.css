@@ -1,5 +1,10 @@
 .rating {
-    position: relative;
-    top: -7.4vh;
-    left: 5vw;
+    /* position: relative; */
+    /* top: -7.4vh; */
+    /* left: 5vw; */
+    display:inline-block;margin-right:10px;
   }
+
+.test {
+    display:inline-block;
+}

@@ -19,8 +19,10 @@ const RestaurantView = (props) => {
         <div className="left floated content">
             <h3 className="header">{props.restaurant.name}</h3>
             <div className="meta">
-                <p>{props.restaurant.cuisine}</p>
-                {rating()}
+                <div className="test">
+                    <p>{props.restaurant.cuisine}</p>
+                    {rating()}
+                </div>
                 <div className="description">
                     <p> <b>Where: </b>{props.restaurant.address}</p>
                 </div>
