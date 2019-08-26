@@ -1,0 +1,21 @@
+.header-bar {
+    background-color: #3f51b5;
+}
+
+.link {
+    color: #FFF;
+}
+
+.link:hover {
+    color: lightgrey;
+}
+
+.title {
+    text-align: left;
+}
+
+.header-container {
+    align-items: center;
+    height: 50px;
+    display: flex !important;
+}
