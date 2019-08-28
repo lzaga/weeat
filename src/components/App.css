@@ -3,5 +3,9 @@ body {
 }
 
 h1 {
-    margin-top: 7vh !important;
+    margin-top: 2vh !important;
+}
+
+p { 
+    font-family: 'WebFont', Arial, sans-serif; 
 }

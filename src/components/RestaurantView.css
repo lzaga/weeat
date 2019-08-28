@@ -8,3 +8,14 @@
     align-items: baseline;
     justify-content: flex-start;
 }
+
+.icon-image {
+    font-family: 'ef_cuisinesregular';
+    font-size: 400%;
+    margin-right: 25px;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+}

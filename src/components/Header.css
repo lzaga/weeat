@@ -19,3 +19,9 @@
     height: 50px;
     display: flex !important;
 }
+
+.webfont-icons {
+    font-family: 'ef_cuisinesregular';
+    font-size: larger;
+    padding-right: 12px;
+}

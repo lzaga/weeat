@@ -7,7 +7,7 @@ const App = () => {
         <div className="ui container grid app">
             <div className="seven wide column">
                 <h1>Welcome to the area</h1>
-                <p>Here are some places you should check out</p>
+                <p>Here are some places you should check out:</p>
                 <RestaurantList />
             </div>
         </div>
