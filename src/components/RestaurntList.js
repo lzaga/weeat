@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchRestaurants } from '../actions/';
 import RestaurantView from './RestaurantView';
-import './RestaurantList.css';
+import styles from './RestaurantList.module.sass';
 
 class RestaurantList extends Component {
     componentDidMount(){
@@ -11,13 +11,28 @@ class RestaurantList extends Component {
     };
 
     renderList() {
-        return this.props.restaurants.map(restaurant => {
+        console.log(styles)
+        if(this.props.restaurants.isFetching) {
             return (
-                <div className="item box" key={restaurant.id}>
-                        <RestaurantView restaurant={restaurant}/>
+                <div className="ui segment">
+                    <div className="ui active loader"></div>
                 </div>
+            );
+        }
+
+        if (this.props.restaurants.error) {
+            return (
+                <div className="ui red message">Sorry, there was an error</div>
             )
-        })
+        } else {
+            return this.props.restaurants.data.map(restaurant => {
+                return (
+                    <div key={restaurant.id} className={`item ${styles.box}`} >
+                            <RestaurantView restaurant={restaurant}/>
+                    </div>
+                )
+            })
+        }
     };
 
     render() {

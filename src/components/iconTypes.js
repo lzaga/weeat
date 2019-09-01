@@ -1,7 +1,7 @@
-export const HEADER = 'F';
+export const CUTLERY = 'F';
 
-export const CUISINES = {
-    Breakfest: 'N',
+export const CuisineIcons = {
+    Breakfast: 'N',
     Asian: 'G',
     Salads: '$',
     Sushi: 'I',
