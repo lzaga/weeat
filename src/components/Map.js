@@ -1,45 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import Geocode from "react-geocode";
 
 class Map extends React.Component{
     constructor(props) {
         super(props);
 
-        this.geocode = Geocode;
-        this.geocode.setApiKey(process.env['REACT_APP_GOOGLE_API_KEY']);
-        this.geocode.enableDebug();
-
         this.state = {
             center: { lat: 40.730610, lng: -73.935242 },
             restaurantsCors: {}
         }
-    };
-
-    updateCordinates = () => {
-        // var restaurantsCors = {};
-
-        try {
-            var restaurant = this.props.restaurants.data[0];
-                if (!this.state.restaurantsCors[restaurant.id]) {
-
-                    debugger
-                    this.geocode.fromAddress(restaurant.address).then(res => {
-                        debugger
-                        const { lat, lng } = res.results[0].geometry.location;
-                        console.log(lat, lng);
-                    })
-                }
-        } catch(e) {
-            console.log(e);
-        }
-    };
-
-    componentDidUpdate(prevProps) {
-        if (this.props.restaurants.data.length > 0 && this.props.restaurants.data.length !== prevProps.restaurants.data.length) {
-            this.updateCordinates();
-        };
     };
 
     restaurantsMap = withGoogleMap(props => {
@@ -55,14 +25,12 @@ class Map extends React.Component{
 
     renderMarkers() {
         if (this.props.restaurants.data.length > 0) {
-            var restaurant = this.props.restaurants.data[0];
-            // return this.props.restaurants.data.map(restaurant => {
-                if(Object.keys(this.state.restaurantsCors).length === 0) this.updateCordinates();
-
+            return this.props.restaurants.data.map(restaurant => {
                 return (
+                    // Put hard-coded because the API key is not valid and didn't want to waste time on it
                     <Marker key={restaurant.id} position={{ lat: 40.730610, lng: -73.935242 }} />
                 )
-            // })
+            })
         };
     };
 
