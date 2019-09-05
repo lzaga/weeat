@@ -7,11 +7,16 @@ import Rating from './Rating';
 const RestaurantView = (props) => {
     const cuisine = props.restaurant.cuisine;
 
+    const randomIcon = () => {
+        var keys = Object.keys(CuisineIcons);
+        return CuisineIcons[keys[ keys.length * Math.random() << 0]]
+    }
+
     return (
         <div className={styles.itemContainer}>
             <div className="ui image">
                 <span className={styles.iconImage}>
-                    {CuisineIcons[cuisine]}
+                    {randomIcon()}
                 </span>
             </div>
             <div className="content">

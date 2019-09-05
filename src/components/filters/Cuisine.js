@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRestaurants } from '../../actions';
+import styles from '../Filters.module.sass'
 
 class Cuisine extends React.Component {
     state = { cuisines: [], value: '' };
@@ -39,10 +40,13 @@ class Cuisine extends React.Component {
 
     render() {
         return (
-            <select className="ui dropdown" onChange={this.changeCuisineFilter} value={this.state.value} >
-                 <option value=''>Cuisine</option>
-                {this.renderOptions()}
-            </select>
+            <div>
+                <h5 className="ui header">Cuisine:</h5>
+                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeCuisineFilter} value={this.state.value} >
+                    <option value=''>Cuisine</option>
+                    {this.renderOptions()}
+                </select>
+            </div>
         )
     }
 };
