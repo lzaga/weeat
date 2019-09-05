@@ -7,7 +7,7 @@ const  Checkbox = props => {
     return (
         <div className={`field ${meta.error && meta.touched ? 'error' : ''}`}>
             <div className={styles.checkbox}>
-                <label className={styles.checkboxLabel}>{label}</label>
+                <label>{label}</label>
                 <input {...input} type='checkbox' autoComplete="off" />
             </div>
         </div>

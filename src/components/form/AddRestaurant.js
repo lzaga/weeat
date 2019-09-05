@@ -1,14 +1,15 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { HOME } from '../../paths'
 import Modal from '../Modal';
 import AddRestaurantForm from './AddRestaurantForm';
-import { Redirect } from 'react-router-dom';
 
 class AddRestaurant extends React.Component {
-    state = { isAddSucessed: false };
+    state = { isAddSucceeded: false };
 
     onClose = () => {
         this.setState({
-            isAddSucessed: true
+            isAddSucceeded: true
         })
     };
     
@@ -24,15 +25,11 @@ class AddRestaurant extends React.Component {
     }
 
     render() {
-        if(this.state.isAddSucessed) {
-            return <Redirect to='/' />;
+        if(this.state.isAddSucceeded) {
+            return <Redirect to={HOME} />;
         };
 
-        return (
-            <Modal title="Add Restaurant" >
-                {this.Child()}
-            </Modal>
-        )
+        return <Modal title="Add Restaurant" >{this.Child()}</Modal>
     }
 }
 

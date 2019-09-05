@@ -4,11 +4,7 @@ import { cuisines } from './cuisines';
 const DropdownSelect = props => {
     const { input, label, meta } = props;
     const renderOptions = (cuisine) => {
-        return (
-            <option key={cuisine} value={cuisine}> 
-                {cuisine}
-            </option>
-        );
+        return <option key={cuisine} value={cuisine}>{cuisine}</option>
     };
 
     return (

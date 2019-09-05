@@ -4,7 +4,8 @@ import {
     FETCH_RESTAURANTS_SUCCESS,
     FETCH_RESTAURANTS_STARTED,
     ADD_RESTAURANT_SUCCESS,
-    ADD_RESTAURANT_FAILURE
+    ADD_RESTAURANT_FAILURE,
+    ADD_RESTAURANT_STARTED
 } from './types';
 
 export const fetchRestaurants = () => async dispatch => {
@@ -21,6 +22,7 @@ export const fetchRestaurants = () => async dispatch => {
 
 export const addRestaurant = formValues => async dispatch => {
     var response = {};
+    dispatch({ type: ADD_RESTAURANT_STARTED, payload: response });
 
     try {
         response = await weeatApi.post('/restaurants', formValues);

@@ -3,7 +3,7 @@ import {
     FETCH_RESTAURANTS_STARTED,
     FETCH_RESTAURANTS_SUCCESS,
     ADD_RESTAURANT_FAILURE,
-    ADD_RESTAURANT_SUCCESS
+    ADD_RESTAURANT_SUCCESS,
 } from '../actions/types';
 
 export default (state = { data: [] }, action) => {
