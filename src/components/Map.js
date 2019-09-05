@@ -3,14 +3,7 @@ import { connect } from 'react-redux';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 class Map extends React.Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            center: { lat: 40.730610, lng: -73.935242 },
-            restaurantsCors: {}
-        }
-    };
+    state = { center: { lat: 40.730610, lng: -73.935242 } };
 
     restaurantsMap = withGoogleMap(props => {
         return (
@@ -28,7 +21,7 @@ class Map extends React.Component{
             return this.props.restaurants.data.map(restaurant => {
                 return (
                     // Put hard-coded because the API key is not valid and didn't want to waste time on it
-                    <Marker key={restaurant.id} position={{ lat: 40.730610, lng: -73.935242 }} />
+                    <Marker key={restaurant.id} position={this.state.center} />
                 )
             })
         };
