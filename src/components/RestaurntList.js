@@ -11,7 +11,6 @@ class RestaurantList extends Component {
     };
 
     renderList() {
-        console.log(styles)
         if(this.props.restaurants.isFetching) {
             return (
                 <div className="ui segment">
