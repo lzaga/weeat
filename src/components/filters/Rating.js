@@ -4,8 +4,6 @@ import { fetchRestaurants } from '../../actions';
 import styles from '../Filters.module.sass'
 
 class Rating extends React.Component {
-    state = { value: '' };
-
     changeRatingFilter = (e) => {
         const params = { rating: e.target.value};
 
@@ -16,8 +14,8 @@ class Rating extends React.Component {
         return (
             <div>
                 <h5 className="ui header">Rating:</h5>
-                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeRatingFilter} value={this.state.value} >
-                    <option value='0'>Rating</option>
+                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeRatingFilter} value={this.props.restaurants.filters['rating']} >
+                    <option value=''>Rating</option>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>

@@ -4,8 +4,6 @@ import { fetchRestaurants } from '../../actions';
 import styles from '../Filters.module.sass'
 
 class DelivaryTime extends React.Component {
-    state = { value: '' };
-
     changeDeliveryTimeFilter = (e) => {
         const params = { max_delivery_time: e.target.value};
 
@@ -16,8 +14,8 @@ class DelivaryTime extends React.Component {
         return (
             <div>
                 <h5 className="ui header">Speed:</h5>
-                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeDeliveryTimeFilter} value={this.state.value} >
-                    <option value='0'>Speed</option>
+                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeDeliveryTimeFilter} value={this.props.restaurants.filters['max_delivery_time']} >
+                    <option value=''>Speed</option>
                     <option value='15'>15</option>
                     <option value='30'>30</option>
                     <option value='40'>40</option>

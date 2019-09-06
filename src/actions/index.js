@@ -8,13 +8,15 @@ import {
     ADD_RESTAURANT_STARTED
 } from './types';
 
-export const fetchRestaurants = params => async dispatch => {
+export const fetchRestaurants = params => async (dispatch, getState) => {
     var response = {};
-    dispatch({ type: FETCH_RESTAURANTS_STARTED, payload: response });
+    var filters = { ...(getState()).restaurants.filters, ...params };
 
+    dispatch({ type: FETCH_RESTAURANTS_STARTED, payload: response });
+    
     try {
-        response = await weeatApi.get('/restaurants', { params });
-        dispatch({ type: FETCH_RESTAURANTS_SUCCESS, payload: response.data });
+        response = await weeatApi.get('/restaurants', { params: filters });
+        dispatch({ type: FETCH_RESTAURANTS_SUCCESS, payload: { data: response.data, filters } });
     } catch(e) {
         dispatch({ type: FETCH_RESTAURANTS_FAILURE, payload: e });
     }

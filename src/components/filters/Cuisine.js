@@ -4,7 +4,7 @@ import { fetchRestaurants } from '../../actions';
 import styles from '../Filters.module.sass'
 
 class Cuisine extends React.Component {
-    state = { cuisines: [], value: '' };
+    state = { cuisines: [] };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.restaurants.data.length > 0 && this.state.cuisines.length === 0) {
@@ -21,7 +21,7 @@ class Cuisine extends React.Component {
     };
 
     renderOptions() {
-        if (this.props.restaurants.data.length > 0 && this.state.cuisines.length > 0) {
+        if (this.state.cuisines.length > 0) {
             return this.state.cuisines.map((cuisine, i) => {
                 return (
                     <option key={i} value={cuisine}>{cuisine}</option>
@@ -42,7 +42,7 @@ class Cuisine extends React.Component {
         return (
             <div>
                 <h5 className="ui header">Cuisine:</h5>
-                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeCuisineFilter} value={this.state.value} >
+                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeCuisineFilter} value={this.props.restaurants.filters['cuisine']} >
                     <option value=''>Cuisine</option>
                     {this.renderOptions()}
                 </select>
