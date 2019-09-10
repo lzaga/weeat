@@ -12,13 +12,15 @@ export const fetchRestaurants = params => async (
   dispatch,
   getState,
 ) => {
-  var response = {};
-  var filters = { ...getState().restaurants.filters, ...params };
+  const filters = createFilters(params, getState);
 
-  dispatch({ type: FETCH_RESTAURANTS_STARTED, payload: response });
+  dispatch({
+    type: FETCH_RESTAURANTS_STARTED,
+    payload: {},
+  });
 
   try {
-    response = await weeatApi.get('/restaurants', {
+    const response = await weeatApi.get('/restaurants', {
       params: filters,
     });
     dispatch({
@@ -31,11 +33,10 @@ export const fetchRestaurants = params => async (
 };
 
 export const addRestaurant = formValues => async dispatch => {
-  var response = {};
-  dispatch({ type: ADD_RESTAURANT_STARTED, payload: response });
+  dispatch({ type: ADD_RESTAURANT_STARTED, payload: {} });
 
   try {
-    response = await weeatApi.post('/restaurants', formValues);
+    const response = await weeatApi.post('/restaurants', formValues);
     dispatch({
       type: ADD_RESTAURANT_SUCCESS,
       payload: response.data,
@@ -44,3 +45,15 @@ export const addRestaurant = formValues => async dispatch => {
     dispatch({ type: ADD_RESTAURANT_FAILURE, payload: e });
   }
 };
+
+function createFilters(params, getState) {
+  const filters = params
+    ? { ...getState().restaurants.filters, ...params }
+    : {};
+
+  for (let [key, value] of Object.entries(filters)) {
+    if (value === '') delete filters[key];
+  }
+
+  return filters;
+}

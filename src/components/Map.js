@@ -14,10 +14,12 @@ class Map extends React.Component {
   });
 
   renderMarkers() {
-    if (this.props.restaurants.data.length > 0) {
+    if (
+      this.props.restaurants.data &&
+      this.props.restaurants.data.length > 0
+    ) {
       return this.props.restaurants.data.map(restaurant => {
         return (
-          // Put hard-coded because the API key is not valid and didn't want to waste time on it
           <Marker key={restaurant.id} position={this.state.center} />
         );
       });

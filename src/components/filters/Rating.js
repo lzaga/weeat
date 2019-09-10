@@ -15,16 +15,16 @@ class Rating extends React.Component {
       <div>
         <h5 className="ui header">Rating:</h5>
         <select
-          className={`ui dropdown ${styles['filterBox']}`}
+          className={`ui dropdown ${styles.filterBox}`}
           onChange={this.changeRatingFilter}
           value={this.props.restaurants.filters['rating']}
         >
-          <option value="">Rating</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="0">Rating</option>
+          {Array(5)
+            .fill()
+            .map((e, i) => (
+              <option key={i + 1}>{i + 1}</option>
+            ))}
         </select>
       </div>
     );

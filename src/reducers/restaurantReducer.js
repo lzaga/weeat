@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   data: [],
   filters: {
     max_delivery_time: '',
-    rating: '',
+    rating: 0,
     cuisine: '',
   },
 };

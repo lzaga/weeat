@@ -6,14 +6,14 @@ import styles from '../Filters.module.sass';
 class Cuisine extends React.Component {
   state = { cuisines: [] };
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     if (
-      nextProps.restaurants.data.length > 0 &&
+      this.props.restaurants.data.length > 0 &&
       this.state.cuisines.length === 0
     ) {
       const cuisines = [];
 
-      nextProps.restaurants.data.map(restaurant => {
+      this.props.restaurants.data.map(restaurant => {
         if (!cuisines[restaurant.cuisine]) {
           cuisines.push(restaurant.cuisine);
         }
@@ -23,19 +23,11 @@ class Cuisine extends React.Component {
     }
   }
 
-  renderOptions() {
-    if (this.state.cuisines.length > 0) {
-      return this.state.cuisines.map((cuisine, i) => {
-        return (
-          <option key={i} value={cuisine}>
-            {cuisine}
-          </option>
-        );
-      });
-    }
-
-    return null;
-  }
+  renderOptions = (cuisine, i) => (
+    <option key={i} value={cuisine}>
+      {cuisine}
+    </option>
+  );
 
   changeCuisineFilter = e => {
     const params = { cuisine: e.target.value };
@@ -44,16 +36,19 @@ class Cuisine extends React.Component {
   };
 
   render() {
+    const { restaurants } = this.props;
+    const { cuisines } = this.state;
+
     return (
       <div>
         <h5 className="ui header">Cuisine:</h5>
         <select
-          className={`ui dropdown ${styles['filterBox']}`}
+          className={`ui dropdown ${styles.filterBox}`}
           onChange={this.changeCuisineFilter}
-          value={this.props.restaurants.filters['cuisine']}
+          value={restaurants.filters['cuisine']}
         >
           <option value="">Cuisine</option>
-          {this.renderOptions()}
+          {cuisines.map(this.renderOptions)}
         </select>
       </div>
     );
