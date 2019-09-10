@@ -1,60 +1,72 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRestaurants } from '../../actions';
-import styles from '../Filters.module.sass'
+import styles from '../Filters.module.sass';
 
 class Cuisine extends React.Component {
-    state = { cuisines: [] };
+  state = { cuisines: [] };
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.restaurants.data.length > 0 && this.state.cuisines.length === 0) {
-            const cuisines = [];
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.restaurants.data.length > 0 &&
+      this.state.cuisines.length === 0
+    ) {
+      const cuisines = [];
 
-            nextProps.restaurants.data.map(restaurant => {
-                if(!cuisines[restaurant.cuisine]) {
-                    cuisines.push(restaurant.cuisine);
-                }
-            })
-    
-            this.setState({ cuisines });
+      nextProps.restaurants.data.map(restaurant => {
+        if (!cuisines[restaurant.cuisine]) {
+          cuisines.push(restaurant.cuisine);
         }
-    };
+      });
 
-    renderOptions() {
-        if (this.state.cuisines.length > 0) {
-            return this.state.cuisines.map((cuisine, i) => {
-                return (
-                    <option key={i} value={cuisine}>{cuisine}</option>
-                )
-            })
-        }
-
-        return null;
-    };
-
-    changeCuisineFilter = (e) => {
-        const params = { cuisine: e.target.value};
-
-        this.props.fetchRestaurants(params);
+      this.setState({ cuisines });
     }
+  }
 
-    render() {
+  renderOptions() {
+    if (this.state.cuisines.length > 0) {
+      return this.state.cuisines.map((cuisine, i) => {
         return (
-            <div>
-                <h5 className="ui header">Cuisine:</h5>
-                <select className={`ui dropdown ${styles['filterBox']}`} onChange={this.changeCuisineFilter} value={this.props.restaurants.filters['cuisine']} >
-                    <option value=''>Cuisine</option>
-                    {this.renderOptions()}
-                </select>
-            </div>
-        )
+          <option key={i} value={cuisine}>
+            {cuisine}
+          </option>
+        );
+      });
     }
-};
 
-const mapStateToProps = (state) => {
-    return {
-        restaurants: state.restaurants
-    }
+    return null;
+  }
+
+  changeCuisineFilter = e => {
+    const params = { cuisine: e.target.value };
+
+    this.props.fetchRestaurants(params);
+  };
+
+  render() {
+    return (
+      <div>
+        <h5 className="ui header">Cuisine:</h5>
+        <select
+          className={`ui dropdown ${styles['filterBox']}`}
+          onChange={this.changeCuisineFilter}
+          value={this.props.restaurants.filters['cuisine']}
+        >
+          <option value="">Cuisine</option>
+          {this.renderOptions()}
+        </select>
+      </div>
+    );
+  }
 }
 
-export default connect(mapStateToProps, { fetchRestaurants })(Cuisine);
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurants,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchRestaurants },
+)(Cuisine);

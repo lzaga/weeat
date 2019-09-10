@@ -3,6 +3,6 @@ import { reducer as formReducer } from 'redux-form';
 import restaurantsReducer from './restaurantReducer';
 
 export default combineReducers({
-    restaurants: restaurantsReducer,
-    form: formReducer
+  restaurants: restaurantsReducer,
+  form: formReducer,
 });

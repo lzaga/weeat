@@ -4,15 +4,14 @@ import Rating from './filters/Rating';
 import Cuisine from './filters/Cuisine';
 import DelivaryTime from './filters/DelivaryTime';
 
-
 const Filters = props => {
-    return (
-        <div id={styles['filterContainer']}>
-            <Cuisine />
-            <Rating />
-            <DelivaryTime />
-        </div>
-    )
+  return (
+    <div id={styles['filterContainer']}>
+      <Cuisine />
+      <Rating />
+      <DelivaryTime />
+    </div>
+  );
 };
 
 export default Filters;
